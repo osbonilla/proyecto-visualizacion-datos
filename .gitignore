@@ -1,0 +1,54 @@
+# ============================================================
+# Entornos y cachés (Python)
+# ============================================================
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# ============================================================
+# Node / Svelte (frontend)
+# ============================================================
+node_modules/
+frontend/dist/
+frontend/.svelte-kit/
+frontend/.vite/
+
+# ============================================================
+# Credenciales (nunca deben subirse al repo)
+# ============================================================
+.cdsapirc
+.env
+.env.local
+
+# ============================================================
+# DATOS — el pipeline los regenera desde cero, nada se commitea
+# ============================================================
+# NetCDF crudos y procesados (incluye subcarpetas era5_ecuador_*)
+data-processing/**/*.nc
+data-processing/era5_ecuador_*/
+
+# ZIPs que a veces entrega el CDS disfrazados de .nc
+data-processing/*.zip
+
+# CSV generados por los scripts (ej. oni_procesado.csv) —
+# se regenera corriendo 01_descarga_oni.py
+data-processing/*.csv
+
+# GeoJSON de provincias — se regenera con 07_descarga_provincias.py
+backend/provincias.geojson
+
+# ============================================================
+# Artefactos de debugging / temporales (no son parte de la app)
+# ============================================================
+backend/debug_raster.py
+backend/test_raster.png
+backend/*.png
+
+# ============================================================
+# Sistema / editor
+# ============================================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
