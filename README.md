@@ -137,11 +137,12 @@ Módulos importados en `frontend/src/lib/MapView.svelte`:
 | `view.toScreen()` | Reposiciona el `<img>` del raster PNG en cada pan/zoom/resize — el truco que reemplaza a Image Server |
 | `view.constraints` | `snapToZoom: false` + `geometry` + `minScale` — encuadre "cover" exacto sin redondeo de escala y sin salir del raster |
 
-Un script legado (`data-processing/04_arcgis_notebook_capas.py`) corresponde a una
-**arquitectura anterior y abandonada** que intentaba publicar Image Layers desde
-ArcGIS Pro Notebooks (requiere licencia de ArcGIS Pro + ArcGIS Online). Se conserva
-en el repo por trazabilidad histórica, pero **no es necesario correrlo** — el pipeline
-vigente no depende de ArcPy ni de ArcGIS Pro.
+Una arquitectura anterior intentó publicar Image Layers desde ArcGIS Pro Notebooks
+(vía `arcpy`), lo que requiere licencia de ArcGIS Pro + ArcGIS Online. Esa ruta se
+abandonó por falta de licencia y el script correspondiente se eliminó del repo —
+`arcpy` no es instalable con pip, así que mantenerlo habría roto la reproducibilidad
+del pipeline para cualquiera sin esa licencia. El pipeline vigente no depende de
+ArcPy ni de ArcGIS Pro en ningún punto.
 
 ---
 
@@ -170,7 +171,6 @@ proyecto-visualizacion-datos/
 │   ├── 01_descarga_oni.py            # NOAA ONI  →  oni_procesado.csv
 │   ├── 02_descarga_era5.py           # ERA5 1997 (evento de referencia)
 │   ├── 03_inspeccionar_netcdf.py     # inspecciona / extrae NetCDF (CDS a veces entrega ZIP)
-│   ├── 04_arcgis_notebook_capas.py   # ⚠️ legado — no requerido en la arquitectura actual
 │   ├── 05_descarga_era5_reciente.py  # ERA5 2023 + 2024
 │   ├── 06_convertir_celsius.py       # Kelvin → Celsius (2023/2024)
 │   ├── oni_procesado.csv             # (no se sube) generado por 01
@@ -252,8 +252,8 @@ python 03_inspeccionar_netcdf.py era5_ecuador_2024.nc   # idem para 2024
 python 06_convertir_celsius.py         # Kelvin → Celsius para 2023 y 2024
 ```
 
-> `04_arcgis_notebook_capas.py` **no es necesario** — pertenece a la arquitectura
-> legada (ver sección de ArcGIS más arriba).
+> No existe un paso "04": esa arquitectura (ArcGIS Pro Notebooks + ArcPy) se
+> abandonó y su script se eliminó del repo — ver sección de ArcGIS más arriba.
 
 ### 6 · Descargar los límites provinciales
 
