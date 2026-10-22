@@ -1,7 +1,6 @@
 # 🌊 El Niño en Ecuador — Visualizador Climático
 
 **Plataforma de inteligencia climática para gestión de riesgo en gobiernos locales.**
-Proyecto de Visualización de Datos · Maestría en Ciencia de Datos, USFQ.
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
